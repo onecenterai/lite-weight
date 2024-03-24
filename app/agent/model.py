@@ -6,7 +6,7 @@ class Agent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     phone_number = db.Column(db.Integer)
-    is_available = db.Column(db.Boolean)
+    is_available = db.Column(db.Boolean, default=True)
     current_task_code = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=db.func.now())
     updated_at = db.Column(db.DateTime, default=db.func.now())
