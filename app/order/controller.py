@@ -64,8 +64,9 @@ def get_order_status(id):
 
 @bp.post('/return_order')
 @auth_required()
-def return_order(id):
-    order = Order.get_by_id(id)
+def return_order():
+    oid = request.json.get('order_id')
+    order = Order.get_by_id(oid)
     if order is None:
         return {'message': 'Order not found'}, 404
     if order.status != 'DELIVERED':
