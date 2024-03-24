@@ -54,7 +54,7 @@ def get_orders():
     orders = Order.get_all()
     return OrderSchema(many=True).dump(orders), 200
 
-@bp.get('/order_status')
+@bp.get('/order_status/<int:id>')
 @auth_required()
 def get_order_status(id):
     order = Order.get_by_id(id)
