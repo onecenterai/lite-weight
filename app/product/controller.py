@@ -7,7 +7,7 @@ from app.product.schema import *
 bp = Blueprint('product', __name__)
 
 @bp.post('/product')
-#@auth_required()
+@auth_required()
 def create_product():
     name = request.json.get('name')
     price = request.json.get('price')
