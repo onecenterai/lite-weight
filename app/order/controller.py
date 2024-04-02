@@ -54,16 +54,20 @@ def get_orders():
     orders = Order.get_all()
     return OrderSchema(many=True).dump(orders), 200
 
-@bp.get('/order_status/<int:id>')
-#@auth_required()
-def get_order_status(id):
+
+######################################
+### ENDPOITNS FOR ONECENTER AGENTS ###
+######################################
+
+@bp.get('/order_status')
+def get_order_status():
+    id = request.json.get('order_id')
     order = Order.get_by_id(id)
     if order is None:
         return {'message': 'Order not found'}, 404
     return {'message': order.status}
 
 @bp.post('/return_order')
-#@auth_required()
 def return_order():
     oid = request.json.get('order_id')
     order = Order.get_by_id(oid)
