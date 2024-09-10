@@ -59,9 +59,9 @@ def get_orders():
 ### ENDPOITNS FOR ONECENTER AGENTS ###
 ######################################
 
-@bp.get('/order_status')
-def get_order_status():
-    id = request.json.get('order_id')
+@bp.get('/order_status/<int:id>')
+def get_order_status(id):
+    # id = request.json.get('order_id')
     order = Order.get_by_id(id)
     if order is None:
         return {'message': 'Order not found'}, 404
